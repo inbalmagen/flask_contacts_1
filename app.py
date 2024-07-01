@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -13,10 +13,15 @@ my_contacts = [
 
 @app.route("/")
 def contact_list():
-    final_html_str = ''
-    for contact in my_contacts:
-        final_html_str += f"{contact['name']} - {contact['age']}<br>"
-    return final_html_str
+    return render_template('contact_list.html', contacts = my_contacts)
+
+
+# @app.route("/")
+# def contact_list():
+#     final_html_str = ''
+#     for contact in my_contacts:
+#         final_html_str += f"{contact['name']} - {contact['age']}<br>"
+#     return final_html_str
 
 @app.route("/single_contact/<int:usernumber>")
 def single_contact(usernumber):
